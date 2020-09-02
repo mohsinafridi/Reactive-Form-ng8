@@ -8,7 +8,6 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class CreateEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
-  fullNameLength = 0;
 
   constructor(private fb: FormBuilder) { }
   // This object will hold the messages to be displayed to the user
@@ -17,8 +16,9 @@ export class CreateEmployeeComponent implements OnInit {
   formErrors = {
     fullName: '',
     email: '',
+    phone: '',
     skillName: '',
-    experienceInYears: '',
+    experience: '',
     proficiency: ''
   };
 
@@ -32,10 +32,13 @@ export class CreateEmployeeComponent implements OnInit {
     email: {
       required: 'Email is required.'
     },
+    phone: {
+      required: 'Phone is required.'
+    },
     skillName: {
       required: 'Skill Name is required.',
     },
-    experienceInYears: {
+    experience: {
       required: 'Experience is required.',
     },
     proficiency: {
@@ -47,14 +50,24 @@ export class CreateEmployeeComponent implements OnInit {
     // this.employeeForm = new FormGroup({ // 1.
 
     this.employeeForm = this.fb.group({   // 2.
-      fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      contactPreferences: ['email'],
       email: ['', Validators.required],
+      phone: [''],
       // Create skills form group
       skills: this.fb.group({
         skillName: ['', Validators.required],
         experience: ['', Validators.required],
         proficiency: ['', Validators.required]
       })
+    });
+
+    this.employeeForm.get('contactPreferences').valueChanges.subscribe((data: string) => {
+      this.onContactPreferenceChange(data);
+    });
+
+    this.employeeForm.valueChanges.subscribe((data) => {
+      this.logValidationErrors(this.employeeForm);
     });
 
     // Below Code is for Observable "ValueChanges" for form or single control
@@ -81,26 +94,31 @@ export class CreateEmployeeComponent implements OnInit {
 
 
     this.logValidationErrors(this.employeeForm);
+    console.log(this.formErrors);
   }
 
+  onContactPreferenceChange(seletedValue: string) {
+        const phoneControl  = this.employeeForm.get('phone');
+        if (seletedValue === 'phone') {
+          phoneControl.setValidators(Validators.required);
+        } else {
+          phoneControl.clearValidators();
+        }
+        phoneControl.updateValueAndValidity();
+  }
 
-  logValidationErrors(group: FormGroup): void {
+  logValidationErrors(group: FormGroup = this.employeeForm): void {
     // console.log(Object.keys(group.controls));  // get all Control Keys.
 
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormGroup) {
         this.logValidationErrors(abstractControl);
-      } else { // If the control is a FormControl
+      } else {
         this.formErrors[key] = ''; //  Clear the existing validation errors.
-        if (abstractControl && !abstractControl.valid) {
-          // Get all the validation messages of the form control
-          // that has failed the validation
+        if (abstractControl && !abstractControl.valid &&
+          (abstractControl.touched || abstractControl.dirty)) {
           const messages = this.validationMessages[key];
-          // Find which validation has failed. For example required,
-          // minlength or maxlength. Store that error message in the
-          // formErrors object. The UI will bind to this object to
-          // display the validation errors
           for (const errorKey in abstractControl.errors) {
             if (errorKey) {
               this.formErrors[key] += messages[errorKey] + ' ';
