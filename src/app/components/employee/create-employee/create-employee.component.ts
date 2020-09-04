@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { CustomeValidator } from './../../../shared/validators/CustomValidator';
 
 @Component({
@@ -15,14 +15,14 @@ export class CreateEmployeeComponent implements OnInit {
   // Notice, each key in this object has the same name as the
   // corresponding form control
   formErrors = {
-    fullName: '',
-    email: '',
-    confirmemail: '',
-    emailGroup: '',
-    phone: '',
-    skillName: '',
-    experience: '',
-    proficiency: ''
+    // fullName: '',
+    // email: '',
+    // confirmemail: '',
+    // emailGroup: '',
+    // phone: '',
+    // skillName: '',
+    // experience: '',
+    // proficiency: ''
   };
 
   // This object contains all the validation messages for this form
@@ -40,23 +40,23 @@ export class CreateEmployeeComponent implements OnInit {
       required: 'Confirm Email is required.',
     },
     emailGroup: {
-      emailMisMatch : 'Email and Confirm Email does not match.',
+      emailMisMatch: 'Email and Confirm Email does not match.',
     },
     phone: {
       required: 'Phone is required.',
       whitespace: 'No White Space in Phone Number.'
     },
-    skillName: {
-      required: 'Skill Name is required.',
-      whitespace: 'No White Space in Skill Name.'
-    },
-    experience: {
-      required: 'Experience is required.',
-      whitespace: 'No White Space in Experience.'
-    },
-    proficiency: {
-      required: 'Proficiency is required.'
-    },
+    // skillName: {
+    //   required: 'Skill Name is required.',
+    //   whitespace: 'No White Space in Skill Name.'
+    // },
+    // experience: {
+    //   required: 'Experience is required.',
+    //   whitespace: 'No White Space in Experience.'
+    // },
+    // proficiency: {
+    //   required: 'Proficiency is required.'
+    // },
   };
 
   ngOnInit() {
@@ -65,19 +65,16 @@ export class CreateEmployeeComponent implements OnInit {
     this.employeeForm = this.fb.group({   // 2.
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       contactPreferences: ['email'],
-
       emailGroup: this.fb.group({
         email: ['', [Validators.required, CustomeValidator.emailDomainCheck('mohsin.com')]],
         confirmemail: ['', Validators.required],
-      } , { validator : matchEmail}),
+      }, { validator: matchEmail }),
 
       phone: ['', CustomeValidator.noWhitespaceValidator],
       // Create skills form group
-      skills: this.fb.group({
-        skillName: ['', [Validators.required, CustomeValidator.noWhitespaceValidator]],
-        experience: ['', [Validators.required, CustomeValidator.noWhitespaceValidator]],
-        proficiency: ['', Validators.required]
-      })
+      skills: this.fb.array([
+        this.addSkillFormGroup()
+      ])
     });
 
     this.employeeForm.get('contactPreferences').valueChanges.subscribe((data: string) => {
@@ -96,6 +93,23 @@ export class CreateEmployeeComponent implements OnInit {
 
   }
 
+  addSkillFormGroup(): FormGroup {
+    return this.fb.group({
+      skillName: ['', Validators.required],
+      experience: ['', Validators.required],
+      proficiency: ['', Validators.required]
+    });
+  }
+
+  onRemoveSkillClick(skillIndex: number): void {
+    (this.employeeForm.get('skills') as FormArray).removeAt(skillIndex);
+  }
+
+  addSkillButtonClick(): void {
+    // convert type to F.Array for Push method.
+    (this.employeeForm.get('skills') as FormArray).push(this.addSkillFormGroup());
+  }
+
   onLoadDataClick(): void {
     // setValue -> for full form
     // patchValue -> for full and partial form data.
@@ -111,8 +125,9 @@ export class CreateEmployeeComponent implements OnInit {
     // });
 
 
-    this.logValidationErrors(this.employeeForm);
-    console.log(this.formErrors);
+    // this.logValidationErrors(this.employeeForm);
+    // console.log(this.formErrors);
+
   }
 
   onContactPreferenceChange(seletedValue: string) {
@@ -137,6 +152,7 @@ export class CreateEmployeeComponent implements OnInit {
         const messages = this.validationMessages[key];
         for (const errorKey in abstractControl.errors) {
           if (errorKey) {
+            debugger;
             this.formErrors[key] += messages[errorKey] + ' ';
           }
         }
@@ -147,6 +163,15 @@ export class CreateEmployeeComponent implements OnInit {
       if (abstractControl instanceof FormGroup) {
         this.logValidationErrors(abstractControl);
       }
+      // For Form Array
+      // Form Array is collection of F.Controls,F.Group and nested F.Array.
+      // if (abstractControl instanceof FormArray) {
+      //   for (const control of abstractControl.controls) {
+      //     if (control instanceof FormGroup) {
+      //       this.logValidationErrors(control);
+      //     }
+      //   }
+      // }
     });
   }
 }
