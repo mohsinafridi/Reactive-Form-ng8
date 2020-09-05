@@ -1,18 +1,22 @@
-import { DataService } from './data.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { DataService } from './data.service';
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ParentComponent } from './parent/parent.component';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+// import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 
 import { PracticeComponent } from './practice/practice.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChildComponent } from './child/child.component';
-import { CreateEmployeeComponent } from './components/employee/create-employee/create-employee.component';
-import { ListEmployeesComponent } from './components/employee/list-employees/list-employees.component';
+
+// Custom Modules
+import { EmployeeModule } from './modules/employee/employee.module';
+import { HomeComponent } from './home.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +24,13 @@ import { ListEmployeesComponent } from './components/employee/list-employees/lis
     ParentComponent,
     ChildComponent,
     PracticeComponent,
-    CreateEmployeeComponent,
-    ListEmployeesComponent
+    HomeComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     HttpClientModule,
-    BrowserModule, AppRoutingModule,
-      ReactiveFormsModule,
+    BrowserModule,
+     EmployeeModule,
      AppRoutingModule
   ],
   providers: [DataService],
