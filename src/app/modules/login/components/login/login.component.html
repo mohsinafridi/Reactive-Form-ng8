@@ -1,0 +1,15 @@
+<form #form="ngForm" [formGroup]="loginForm">
+  <h2 class="text-center text-primary">Login</h2>
+  <hr>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" formControlName="email" required>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" id="pwd" formControlName="password" required>
+
+  </div>
+
+  <button type="submit" (click)="login(loginForm.value)" class="btn btn-primary">Login</button>
+</form>

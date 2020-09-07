@@ -1,5 +1,5 @@
 {
-  "name": "ng8",
+  "name": "Reactive Forms",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -15,11 +15,13 @@
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
+    "@angular/fire": "^6.0.2",
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "bootstrap3": "^3.3.5",
+    "firebase": "^7.19.1",
     "jquery": "^3.5.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

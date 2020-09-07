@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  registerMode = false;
+  values: any;
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    // this.getValues();
   }
+
+  registerToggle() {
+    this.registerMode = true;
+  }
+
+cancelRegisterMode(registerMode: boolean) {
+       this.registerMode = registerMode;
+}
 
 }

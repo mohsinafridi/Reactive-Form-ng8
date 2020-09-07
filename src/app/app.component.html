@@ -1,6 +1,11 @@
-<div class="container">
+
     <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
+
+      <div class="contianer">
+        <a class="navbar-brand" [routerLink]="['/home']">My Empo</a>
+
+
+        <ul class="nav navbar-nav" *ngIf="loggedIn()">
           <li>
             <a routerLinkActive="active" routerLink="home">Home</a>
           </li>
@@ -10,7 +15,27 @@
             <li>
                 <a routerLinkActive="active" routerLink="employees/create">Create</a>
             </li>
+
+            <li>
+              <a routerLinkActive="active" routerLink="reports">Reports</a>
+          </li>
+          <li>
+            <a routerLinkActive="active" routerLink="reports/create">Create Report</a>
+        </li>
         </ul>
+
+        <form  *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0"
+        (ngSubmit)="login()">
+          <input class="form-control mr-sm-2" type="text" placeholder="UserName" name="UserName"
+           required [(ngModel)]="model.UserName">
+          <input class="form-control mr-sm-2" type="Password" placeholder="Password" name="Password"
+          required [(ngModel)]="model.Password">
+          <button class="btn btn-success my-2 my-sm-0" type="submit" [disabled]="!loginForm.valid">Login</button>
+        </form>
+      </div>
     </nav>
-    <router-outlet></router-outlet>
-</div>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+

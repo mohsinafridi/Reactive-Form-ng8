@@ -1,0 +1,23 @@
+<div class="table-responsive">
+  <table class="table table-bordered" *ngIf="users && users.length">
+    <thead>
+      <tr class="bg-primary">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.payload.doc.data().name }}</td>
+        <td>{{ user.payload.doc.data().email }}</td>
+        <td>{{ user.payload.doc.data().gender }}</td>
+        <td> <button class="btn btn-primary">Edit</button>
+          <button class="btn btn-danger mt-4" type="button"
+           (click)="onDelteUserClick(user.payload.doc.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

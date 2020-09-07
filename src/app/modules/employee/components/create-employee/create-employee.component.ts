@@ -70,7 +70,7 @@ export class CreateEmployeeComponent implements OnInit {
     // this.employeeForm = new FormGroup({ // 1.
 
     this.employeeForm = this.fb.group({   // 2.
-      id:   [''],
+      id: [''],
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       contactPreference: ['email'],
       emailGroup: this.fb.group({
@@ -263,7 +263,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   mapFormDataToEmployeeModel() {
     this.employee.id = this.employeeForm.value.id,
-    this.employee.fullName = this.employeeForm.value.fullName;
+      this.employee.fullName = this.employeeForm.value.fullName;
     this.employee.contactPreference = this.employeeForm.value.contactPreference;
     this.employee.email = this.employeeForm.value.emailGroup.email;
     this.employee.phone = this.employeeForm.value.phone;
@@ -275,7 +275,8 @@ function matchEmail(group: AbstractControl) {
   const email = group.get('email');
   const confirmemail = group.get('confirmemail');
 
-  if (email.value === confirmemail.value || (confirmemail.pristine && confirmemail.value === '')) { return null; } else {
+  if (email.value === confirmemail.value || (confirmemail.pristine && confirmemail.value === '')) { return null; }
+  else {
     return { 'emailMisMatch': true };
   }
 }

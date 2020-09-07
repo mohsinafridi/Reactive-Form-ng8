@@ -56,6 +56,43 @@
           "proficiency": "advanced"
         }
       ]
+    },
+    {
+      "id": 4,
+      "fullName": "Asim",
+      "email": "asim@gmail.com",
+      "contactPreference": "phone",
+      "phone": "5641238971",
+      "skills": [
+        {
+          "skillName": "Angular",
+          "experience": "4",
+          "proficiency": "intermediate"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Mark",
+      "email": "mark@gmail.com",
+      "gender": "male"
+    },
+    {
+      "gender": "male",
+      "name": "asd",
+      "email": "asd@gmail.com",
+      "password": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "asd",
+      "email": "asd@gmail.com",
+      "gender": "male",
+      "password": ""
     }
   ]
 }
