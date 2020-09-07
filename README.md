@@ -31,7 +31,7 @@ FormGroup, FormControl and FormArray are all inherited from AbstractControl(abst
   form Control
   form group and nested Form arrays.
   
-  #Firebase 
+  # Firebase 
    I have also added Firebase User Registrationa and user login.
    
    
