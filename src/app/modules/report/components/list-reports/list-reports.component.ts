@@ -27,5 +27,8 @@ export class ListReportsComponent implements OnInit {
       alert('error!');
     });
   }
+  testMethod() {
+  console.log('Testing for Pull request');
+  }
 
 }
