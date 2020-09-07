@@ -18,7 +18,9 @@ export class FirebaseService {
     return this.fireStore.collection('users').snapshotChanges();
   }
   createUser(user: IUser) {
-    return this.fireStore.collection('users').add(user);
+    this.register(user.email, user.password);  // in authentical tab
+    this.sendVerificationMail(user.email);    // send email to him
+    return this.fireStore.collection('users').add(user); // in firestore.
   }
   updateUser(user: IUser) {
     delete user.id;
@@ -30,33 +32,54 @@ export class FirebaseService {
     // this.fireStore.doc('users/' + userId).delete();
   }
 
-
-  async register(email: string, password: string) {
-    var result = await this.fAuth.createUserWithEmailAndPassword(email, password);
+  // Send email verfificaiton when new user sign up
+  sendVerificationMail(email: string) {
+    const actionCodeSettings = {
+      url: 'http://localhost:4200',
+      // This must be true.
+      handleCodeInApp: true
+    };
+    debugger
+    return this.fAuth.sendSignInLinkToEmail(email, actionCodeSettings)
+      .then((res) => {
+        debugger
+        this.router.navigate(['/employees']);
+      })
+      .catch((err) => console.log(err))
+  }
+  register(email: string, password: string) {
+    this.fAuth.createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
 
   login(value: any) {
     this.fAuth.signInWithEmailAndPassword(value.email, value.password).then((result) => {
-      alert('bravo!');
+      localStorage.setItem('user', result.user.email);
+      this.router.navigate(['/employees']);
     }).catch((err) => {
       alert('error!');
     });
   }
-    async logout(){
-      await this.fAuth.signOut();
-      localStorage.removeItem('user');
-      this.router.navigate(['admin/login']);
-    }
-
-    isLoggedIn(): boolean {
-      const  user  =  JSON.parse(localStorage.getItem('user'));
-      return  user  !==  null;
+  async logout() {
+    await this.fAuth.signOut();
+    localStorage.removeItem('user');
+    this.router.navigate(['/employees']);
   }
 
-  async  loginWithGoogle(){
-    await  this.fAuth.signInWithPopup(new auth.GoogleAuthProvider())
-    this.router.navigate(['admin/list']);
-}
+  isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null;
+  }
+
+  //   async  loginWithGoogle(){
+  //     await  this.fAuth.signInWithPopup(new auth.GoogleAuthProvider())
+  //     this.router.navigate(['admin/list']);
+  // }
 
 }

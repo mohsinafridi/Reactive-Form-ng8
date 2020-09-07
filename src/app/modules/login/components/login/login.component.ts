@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseService } from './../../../../shared/services/firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
@@ -17,15 +17,13 @@ export class LoginComponent implements OnInit {
   constructor(private fireBase: FirebaseService, private fb: FormBuilder) { }
 
   ngOnInit() {
-
     this.loginForm = this.fb.group({
-      email: [''],
-      password: ['']
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
   login(value: any) {
-    debugger;
     this.fireBase.login(value);
   }
 

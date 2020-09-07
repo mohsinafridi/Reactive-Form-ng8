@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,21 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // isLogin: boolean;
   constructor(private router: Router) {
 
   }
   model: any = {};
   title = 'Reactive Form';
 
-  login() {
-    this.router.navigate(['/employees']);
-    localStorage.setItem('isLogin', 'true');
-  }
-
   loggedIn() {
-    if (localStorage.getItem('isLogin') === 'true') {
-      return true;
+    if (localStorage.getItem('user') === null) {
+      return false;
     }
+    return true;
+  }
+  logOut() {
+    localStorage.removeItem('user');
+    this.router.navigate(['/home']);
   }
 }

@@ -6,7 +6,6 @@ import { CustomeValidator } from '../../../shared/validators/CustomValidator';
 import { IUser } from '../../../shared/models/User';
 import { AuthService } from '../../../shared/services/auth.service';
 import { FirebaseService } from '../../../shared/services/firebase.service';
-import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +16,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   model: any = {};
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router
-    , private firebaseService: FirebaseService) { }
+    ,         private firebaseService: FirebaseService) { }
 
   @Output() cancelRegister = new EventEmitter();
   user: IUser;
@@ -35,10 +34,10 @@ export class RegisterComponent implements OnInit {
 
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      gender: new FormControl('male'),
+      gender: ['female'],
       name: ['', Validators.required],
       email: ['', [Validators.required, CustomeValidator.emailDomainCheck('gmail.com')]],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
   }
@@ -54,7 +53,7 @@ export class RegisterComponent implements OnInit {
       // this.user = Object.assign({}, this.registerForm.value);
       this.mapFormDataToUserModel();
       this.firebaseService.createUser(this.user).then((result) => {
-       this.router.navigate(['/reports']);
+        this.router.navigate(['/reports']);
       }).catch((err) => {
         console.log(err);
       });
@@ -66,6 +65,7 @@ export class RegisterComponent implements OnInit {
     this.user.name = this.registerForm.value.name;
     this.user.email = this.registerForm.value.email;
     this.user.gender = this.registerForm.value.gender;
+    this.user.password = this.registerForm.value.password;
   }
 
   cancel() {
