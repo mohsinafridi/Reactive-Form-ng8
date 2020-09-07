@@ -1,6 +1,6 @@
 
 # Reactive-Form-ng8
-Reactive Form is an approach in agngular to build forms.
+Reactive Form is an approach in angular-8 to build forms.
 FormGroup ,FormControl and FormArray is Key building blocks of Reactive Forms.
 it has 2 methods ,by using 
 #1. FormGroup, FormControl and FormArray
