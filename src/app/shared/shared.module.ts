@@ -14,7 +14,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 @NgModule({
   declarations: [],
   imports: [
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'mytestapp'),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule, // Only required for database features
     AngularFireAuthModule, // Only required for auth features,
     AngularFireStorageModule // Only required for storage features

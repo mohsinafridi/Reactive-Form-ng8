@@ -22,14 +22,14 @@ export class CreateEmployeeComponent implements OnInit {
   // Notice, each key in this object has the same name as the
   // corresponding form control
   formErrors = {
-    // fullName: '',
-    // email: '',
-    // confirmemail: '',
-    // emailGroup: '',
-    // phone: '',
-    // skillName: '',
-    // experience: '',
-    // proficiency: ''
+    fullName: '',
+    email: '',
+    confirmemail: '',
+    emailGroup: '',
+    phone: '',
+    skillName: '',
+    experience: '',
+    proficiency: ''
   };
 
   // This object contains all the validation messages for this form
@@ -246,7 +246,6 @@ export class CreateEmployeeComponent implements OnInit {
 
   // Submit -> Add/Update Form.
   submitForm() {
-    debugger;
     this.mapFormDataToEmployeeModel();
     if (this.employee.id) {
       this.employeeService.updateEmployee(this.employee).subscribe(
@@ -268,6 +267,11 @@ export class CreateEmployeeComponent implements OnInit {
     this.employee.email = this.employeeForm.value.emailGroup.email;
     this.employee.phone = this.employeeForm.value.phone;
     this.employee.skills = this.employeeForm.value.skills;
+  }
+
+  // Get Skills Form Array Controls
+  getSkillFormArrayControls() {
+    return (this.employeeForm.get('skills') as FormArray);
   }
 }
 

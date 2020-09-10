@@ -29,6 +29,10 @@ const routes: Routes = [
     loadChildren: './modules/report/report.module#ReportModule',
    // canActivate: [LoginGuard]
   },
+  {
+path: 'practice',
+loadChildren : './modules/practice/practice.module#PracticeModule'
+  },
 
   { path: '**', component: PageNotFoundComponent }
 

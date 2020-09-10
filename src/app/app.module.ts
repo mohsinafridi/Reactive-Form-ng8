@@ -6,31 +6,23 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ParentComponent } from './parent/parent.component';
-// import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-
-
-import { PracticeComponent } from './practice/practice.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ChildComponent } from './child/child.component';
+
+import { HomeComponent } from './home.component';
+import { PageNotFoundComponent } from './page-not-found.component';
+import { LoginComponent } from './modules/login/components/login/login.component';
+import { RegisterComponent } from './modules/register/register/register.component';
 
 // Custom Modules
 import { EmployeeModule } from './modules/employee/employee.module';
 import { ReportModule } from './modules/report/report.module';
+import { PracticeModule } from './modules/practice/practice.module';
 
 
-import { HomeComponent } from './home.component';
-import { PageNotFoundComponent } from './page-not-found.component';
-
-import { LoginComponent } from './modules/login/components/login/login.component';
-import { RegisterComponent } from './modules/register/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ParentComponent,
-    ChildComponent,
-    PracticeComponent,
     HomeComponent,
     PageNotFoundComponent,
     LoginComponent,
@@ -39,11 +31,10 @@ import { RegisterComponent } from './modules/register/register/register.componen
   imports: [
     HttpClientModule,
     BrowserModule,
-     EmployeeModule,
-     AppRoutingModule,
-     ReportModule,
-     FormsModule,
-     ReactiveFormsModule
+    EmployeeModule, ReportModule, PracticeModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
