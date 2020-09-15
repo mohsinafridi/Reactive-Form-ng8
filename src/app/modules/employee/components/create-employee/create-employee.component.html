@@ -71,22 +71,23 @@
           </div>
         </div>
 
-        <div formArrayName="skills" *ngFor="let skill of getSkillFormArrayControls() let i=index">
+        <div formArrayName="skills" *ngFor="let skill of getSkillFormArrayControls().controls let i=index">
           <hr *ngIf="i>0">
           <div [formGroupName]="i">
-            <div class="form-group" [ngClass]="{'has-error': skill.get('skillName').invalid  && skill.get('skillName').touched
+            <div class="form-group" [ngClass]="{'has-error': skill.get('skillName').invalid
+            && skill.get('skillName').touched
                                                                }">
               <label class="col-sm-2 control-label" [attr.for]="'skillName' + i">Skill</label>
               <div class="col-sm-4">
                 <input type="text" class="form-control" [id]="'skillName' + i" formControlName="skillName"
                   placeholder="C#, Java, Angular etc...">
                 <span class="help-block" *ngIf="skill.get('skillName').errors?.required
-                  && skill.controls.skillName.touched">
+                  &&  skill.get('skillName').touched">
                   Skill Name is required.
                 </span>
               </div>
 
-              <div class="col-sm-6" *ngIf="employeeForm.get('skills').length > 1">
+              <div class="col-sm-6" *ngIf="getSkillFormArrayControls().length > 1">
                 <button type="button" class="btn btn-danger btn-sm" (click)="onRemoveSkillClick(i)">
                   <span class="glyphicon glyphicon-remove"></span>
                 </button>
@@ -136,6 +137,9 @@
 
           Save</button>
         <button class="btn btn-primary" type="button" (click)="onLoadDataClick()">Load Data</button>
+
+        <button class="btn btn-primary" type="button">Cancel</button>
+
       </div>
     </div>
   </div>

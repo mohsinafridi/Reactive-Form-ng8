@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
 
 
 
@@ -10,6 +10,9 @@ import { environment } from '../../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+
+// Guard
+import { UnsavedchangesGuard } from './guards/unsavedchanges.guard';
 
 @NgModule({
   declarations: [],
@@ -22,7 +25,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
   ],
   exports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,FormsModule
+  ],
+  providers:[
+    UnsavedchangesGuard
   ]
 })
 export class SharedModule { }

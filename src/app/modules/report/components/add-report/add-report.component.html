@@ -1,1 +1,66 @@
-<p>add-report works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form #reportForm="ngForm"  (ngSubmit)="onSubmit(reportForm)"  #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+          <!-- <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+            <div *ngIf="name.errors.required">First Name is required</div>
+        </div> -->
+        </div>
+
+        <div class="form-group">
+          <label for="name">Report date</label>
+          <input type="date" class="form-control" id="date" required [(ngModel)]="model.date" name="date">
+        </div>
+
+        <div class="form-group">
+          <label for="type">Select Type</label>
+          <select class="form-control" id="type" required [(ngModel)]="model.type" name="type">
+           <option value="0">select type</option>
+            <option *ngFor="let type of reportTypes" [value]="type">{{type}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+        </div>
+
+
+
+      </form>
+      <pre>{{f.valid | json}}</pre>
+      <pre>{{f.value | json}}</pre>
+
+    </div>
+    <div class="col-md-6">
+
+      <div class="table-responsive">
+        <table class="table table-bordered" *ngIf="reports && reports.length">
+          <thead>
+            <tr class="bg-primary">
+              <th>Name</th>
+              <th>Type</th>
+              <th>Date</th>
+
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of reports">
+              <td>{{ report.name }}</td>
+              <td>{{ report.type }}</td>
+              <td>{{ report.date | date }}</td>
+               <td>
+                 <button class="btn btn-danger" (click)="onDeleteReport(report.id)">Delete</button>
+                 </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+

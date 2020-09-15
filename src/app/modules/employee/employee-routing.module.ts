@@ -1,3 +1,4 @@
+import { UnsavedchangesGuard } from './../../shared/guards/unsavedchanges.guard';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,7 +12,7 @@ const routes: Routes = [
     path: '',  // Component less route
     children: [
       { path: '', component: ListEmployeesComponent },
-      { path: 'create', component: CreateEmployeeComponent },
+      { path: 'create', component: CreateEmployeeComponent, canDeactivate :[UnsavedchangesGuard] },
       { path: 'edit/:id', component: CreateEmployeeComponent },
     ]
   }
