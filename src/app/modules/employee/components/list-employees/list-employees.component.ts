@@ -1,7 +1,7 @@
 import { IEmployee } from '../../models/IEmployee';
 import { EmployeeService } from '../../employee.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -11,19 +11,24 @@ import { Router } from '@angular/router';
 })
 export class ListEmployeesComponent implements OnInit {
   employees: IEmployee[];
-  constructor(private employeeService: EmployeeService, private router: Router) { }
+  constructor(private employeeService: EmployeeService, private route: Router, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.employeeService.getEmployees()
-      .subscribe((response: IEmployee[]) =>
-        this.employees = response,
-        (error) =>
-          console.log(error)
-      );
+    // this.employeeService.getEmployees()
+    //   .subscribe((response: IEmployee[]) =>
+    //     this.employees = response,
+    //     (error) =>
+    //       console.log(error)
+    //   );
+    // Using Resolver.
+  //  In other words, to prefetch the data for a particular route before the component is loaded.
+    this.router.data.subscribe(res => {
+      this.employees = res.employees;
+    });
   }
 
   onEditEmployeeClick(employeeId: number) {
-    this.router.navigate(['/employees/edit/', employeeId]);
+    this.route.navigate(['/employees/edit/', employeeId]);
   }
 
 }

@@ -1,3 +1,4 @@
+import { EmployeeResolve } from './resolver/employee.resolver';
 import { UnsavedchangesGuard } from './../../shared/guards/unsavedchanges.guard';
 
 import { NgModule } from '@angular/core';
@@ -11,8 +12,8 @@ const routes: Routes = [
   {
     path: '',  // Component less route
     children: [
-      { path: '', component: ListEmployeesComponent },
-      { path: 'create', component: CreateEmployeeComponent, canDeactivate :[UnsavedchangesGuard] },
+      { path: '', component: ListEmployeesComponent , resolve : {employees : EmployeeResolve} },
+      { path: 'create', component: CreateEmployeeComponent, canDeactivate : [UnsavedchangesGuard] },
       { path: 'edit/:id', component: CreateEmployeeComponent },
     ]
   }

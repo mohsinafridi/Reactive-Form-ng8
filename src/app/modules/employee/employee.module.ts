@@ -1,3 +1,4 @@
+import { EmployeeResolve } from './resolver/employee.resolver';
 import { NgModule } from '@angular/core';
 
 
@@ -17,6 +18,7 @@ import { SharedModule } from './../../shared/shared.module';
   imports: [
     EmployeeRoutingModule,
     SharedModule,
-  ]
+  ],
+  providers : [EmployeeResolve]
 })
 export class EmployeeModule { }
