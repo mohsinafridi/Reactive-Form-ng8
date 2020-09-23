@@ -94,5 +94,25 @@
       "gender": "male",
       "password": ""
     }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "name": "Mohsin Azam",
+      "type": "Criminal",
+      "date": "12-12-2020"
+    },
+    {
+      "name": "Mohsin Azam",
+      "date": "2020-09-16",
+      "type": "Snaching",
+      "id": 2
+    },
+    {
+      "name": "pre-user-registration-hook",
+      "date": "2020-09-03",
+      "type": "Robbery",
+      "id": 3
+    }
   ]
 }

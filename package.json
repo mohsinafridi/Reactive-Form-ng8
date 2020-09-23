@@ -1,9 +1,9 @@
 {
-  "name": "Reactive Forms",
+  "name": "ng8",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve node server.js",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
