@@ -34,6 +34,12 @@ FormGroup, FormControl and FormArray are all inherited from AbstractControl(abst
   # Firebase 
    I have also added Firebase User Registrationa and user login.
    
+   # NGXS
+    A state mangement stuff is added in project,you can view it in ngxs tab in project.
+    
+  #Docker 
+  I also added docker support.so you can pull image from dockerhub.
+  link is  mohsinazam/ng8
    
  All above stuff is in details in the project,so look and implement.
  
