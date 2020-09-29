@@ -38,7 +38,7 @@ FormBuilder is also use to create reactive Forms,it reduce the amount of code in
    # NGXS
     A state mangement stuff is added in project,you can view it in ngxs tab in project.
     
-  #Docker
+  # Docker
   I also added docker support.so you can pull image from dockerhub.
   link is  mohsinazam/ng8
    
