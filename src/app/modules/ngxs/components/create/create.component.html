@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <h2>State management Ngxs is used here! </h2>
+  </div>
+  <div class="row">
+<form [formGroup]="createForm" (ngSubmit)="addTutorial()">
+  <div class="col-md-6">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <!-- <input type="text" class="form-control" placeholder="name" #name> -->
+
+      <input type="text" class="form-control"
+      placeholder="name"
+      formControlName="name">
+      <span class="help-block" *ngIf="this.createForm.get('name').touched && this.createForm.get('name').invalid">
+Name is required.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Url</label>
+      <!-- <input type="text" class="form-control" placeholder="url" #url> -->
+      <input type="text" class="form-control"
+      placeholder="name"
+      formControlName="url">
+
+      <span class="help-block" *ngIf="this.createForm.get('url').touched &&  this.createForm.get('url').invalid">
+        Url is required.
+              </span>
+
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="createForm.invalid">Add a Tutorial</button>
+    </div>
+
+  </div>
+</form>
+
+
+    <div class="col-md-6">
+      <app-read></app-read>
+    </div>
+  </div>
+</div>

@@ -21,19 +21,24 @@ const routes: Routes = [
     path: 'employees',
     data: { preload: true },
     loadChildren: './modules/employee/employee.module#EmployeeModule',
-    // canActivate: [LoginGuard]
+   // canActivate: [LoginGuard]
   },
   {
     path: 'reports',
     data: { preload: true },
     loadChildren: './modules/report/report.module#ReportModule',
+   //  canActivate: [LoginGuard]
+  },
+  {
+    path: 'practice',
+    loadChildren: './modules/practice/practice.module#PracticeModule',
    // canActivate: [LoginGuard]
   },
   {
-path: 'practice',
-loadChildren : './modules/practice/practice.module#PracticeModule'
+    path: 'ngxs',
+    loadChildren: './modules/ngxs/ngxs.module#MyNgxsModule',
+   // canActivate: [LoginGuard]
   },
-
   { path: '**', component: PageNotFoundComponent }
 
 ];

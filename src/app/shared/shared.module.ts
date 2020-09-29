@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
-
-
+import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -25,9 +23,10 @@ import { UnsavedchangesGuard } from './guards/unsavedchanges.guard';
   ],
   exports: [
     CommonModule,
-    ReactiveFormsModule,FormsModule
+     FormsModule,
+     ReactiveFormsModule
   ],
-  providers:[
+  providers: [
     UnsavedchangesGuard
   ]
 })

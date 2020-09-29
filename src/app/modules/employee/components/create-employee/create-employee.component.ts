@@ -2,7 +2,7 @@ import { ISkill } from '../../models/ISkill';
 import { IEmployee } from '../../models/IEmployee';
 import { EmployeeService } from '../../employee.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
+import { FormGroup,  FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { CustomeValidator } from '../../../../shared/validators/CustomValidator';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -262,7 +262,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   mapFormDataToEmployeeModel() {
     this.employee.id = this.employeeForm.value.id,
-      this.employee.fullName = this.employeeForm.value.fullName;
+    this.employee.fullName = this.employeeForm.value.fullName;
     this.employee.contactPreference = this.employeeForm.value.contactPreference;
     this.employee.email = this.employeeForm.value.emailGroup.email;
     this.employee.phone = this.employeeForm.value.phone;
