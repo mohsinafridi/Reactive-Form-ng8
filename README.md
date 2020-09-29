@@ -14,19 +14,20 @@ FormGroup, FormControl and FormArray are all inherited from AbstractControl(abst
 # FormGroup :
     it is Collection of Form Controls.
     
-# FormControl : 
+# FormControl 
      Form Control as name suggest, it is control in the form like firstName ,lastName etc.
      To get FormControl value in ts file,there are 2 ways.
      # 1. formGroup.control.firstName.value.
      # 2. formGroup.get('firstName').value .
 
-# FormBuilder : FormBuilder is also use to create reactive Forms,it reduce the amount of code in component.
+# FormBuilder 
+FormBuilder is also use to create reactive Forms,it reduce the amount of code in component.
               Form builder contains 2 methods
               1. Control()
               2. group()
               3. array() 
               
-  # FormArray : 
+  # FormArray
   contains 
   form Control
   form group and nested Form arrays.
@@ -37,7 +38,7 @@ FormGroup, FormControl and FormArray are all inherited from AbstractControl(abst
    # NGXS
     A state mangement stuff is added in project,you can view it in ngxs tab in project.
     
-  #Docker 
+  #Docker
   I also added docker support.so you can pull image from dockerhub.
   link is  mohsinazam/ng8
    
