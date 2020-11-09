@@ -113,6 +113,18 @@
       "date": "2020-09-03",
       "type": "Robbery",
       "id": 3
+    },
+    {
+      "name": "Tititt",
+      "date": "2020-09-29",
+      "type": "Criminal",
+      "id": 4
+    },
+    {
+      "name": "Mohsin Azam Afridi",
+      "date": "2020-09-29",
+      "type": "Snaching",
+      "id": 5
     }
   ]
 }

@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   model: any = {};
 
-  constructor(private fireBase: FirebaseService, private fb: FormBuilder) { }
+  constructor(private fireBase: FirebaseService, private fb: FormBuilder,private router:Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   login(value: any) {
     this.fireBase.login(value);
+    this.router.navigate(['ngxs']);
   }
 
 }

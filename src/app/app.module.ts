@@ -17,8 +17,16 @@ import { RegisterComponent } from './modules/register/register/register.componen
 import { EmployeeModule } from './modules/employee/employee.module';
 import { ReportModule } from './modules/report/report.module';
 import { PracticeModule } from './modules/practice/practice.module';
+import { MyNgxsModule } from './modules/ngxs/ngxs.module';
 
 
+// NGXS - State management.\
+import { NgxsModule } from '@ngxs/store';
+import { TutorialState } from './shared/ngxs-store/states/tutorial.states';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+
+// import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 @NgModule({
   declarations: [
@@ -31,11 +39,16 @@ import { PracticeModule } from './modules/practice/practice.module';
   imports: [
     HttpClientModule,
     BrowserModule,
-    EmployeeModule, ReportModule, PracticeModule,
+    EmployeeModule, ReportModule, PracticeModule, MyNgxsModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    NgxsModule.forRoot([
+      TutorialState
+    ]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
+     ],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

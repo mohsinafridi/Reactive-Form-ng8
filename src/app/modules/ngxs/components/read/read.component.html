@@ -1,0 +1,25 @@
+
+
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+
+      <thead>
+        <tr class="bg-primary">
+          <th>Name</th>
+          <th>Url</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tutorial of tutorials  | async">
+          <td>{{ tutorial.name }}</td>
+          <td>{{ tutorial.url }}</td>
+           <td>
+            <button class="btn btn-danger" (click)="delTutorial(tutorial.name)">Delete</button>
+             </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
